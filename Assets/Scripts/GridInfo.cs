@@ -69,6 +69,7 @@ public class GridInfo : MonoBehaviour
     {
         if (nextExplores.Count > 0)
         {
+            nextExplores = nextExplores.OrderBy(x => UnityEngine.Random.value).ToList();//Ensure the spawn is more random
             foreach (int id in nextExplores)
             {
                 if (!explored.Contains(id) && id < gridWidth * gridHeight && id >= 0)
@@ -79,8 +80,14 @@ public class GridInfo : MonoBehaviour
                     }
                     else
                     {
-                        backUpExplores.Add(id-1);
-                        backUpExplores.Add(id+1);
+                        if (id % gridWidth != 0)
+                        {
+                            backUpExplores.Add(id - 1);
+                        }
+                        if ((id+1) % gridWidth != 0)
+                        {
+                            backUpExplores.Add(id + 1);
+                        }
                         backUpExplores.Add(id-gridWidth);
                         backUpExplores.Add(id+gridWidth);
                         explored.Add(id);
@@ -96,16 +103,82 @@ public class GridInfo : MonoBehaviour
         }
     }
 
+    public void TryFuseBomb(int id, int itemID)
+    {
+        List<int> nextExplores = new List<int>();
+        HashSet<int> octopusFound = new HashSet<int>();
+        nextExplores.Add(id);
+
+        if (DFS(nextExplores, ref octopusFound, itemID))
+        {
+            foreach (int i in octopusFound)
+            {
+                SetItemID(i, 0);
+            }
+            SetItemID(id, itemID+1);
+        }
+    }
+
+    private bool DFS(List<int> nextExplores, ref HashSet<int> octopusFound, int itemID)
+    {
+        if (octopusFound.Count == 3)
+        {
+            return true;
+        }
+        if (nextExplores.Count > 0)
+        {
+            foreach (int id in nextExplores)
+            {
+                if (!octopusFound.Contains(id) && id < gridWidth * gridHeight && id >= 0 && grid[id].cellItemID == itemID)
+                {
+                    List<int> nextLevelExplores = new List<int>();
+                    if (id % gridWidth != 0)
+                    {
+                        nextLevelExplores.Add(id - 1);
+                    }
+                    if ((id + 1) % gridWidth != 0)
+                    {
+                        nextLevelExplores.Add(id + 1);
+                    }
+                    nextLevelExplores.Add(id - gridWidth);
+                    nextLevelExplores.Add(id + gridWidth);
+                    octopusFound.Add(id);
+                    if (DFS(nextLevelExplores, ref octopusFound, itemID))
+                    {
+                        return true;
+                    }
+                    octopusFound.Remove(id);
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
     public void Shuffle()
     {
-        grid = grid.OrderBy(x => UnityEngine.Random.value).ToArray();
+        for (int i=grid.Length -1; i>0; i--)
+        {
+            if (grid[i].cellItemID > 2 || grid[i].cellItemID == 0)
+            {
+                int j;
+                do
+                {
+                    j = UnityEngine.Random.Range(0, i + 1);
+                } while (grid[j].cellItemID == 1 || grid[j].cellItemID == 2);
+                CellInfo cell = grid[i];
+                grid[i] = grid[j];
+                grid[j] = cell;
+            }
+        }
+        //grid = grid.OrderBy(x => UnityEngine.Random.value).ToArray();
         for (int j = 0; j < gridHeight; j++)
         {
             for (int i = 0; i < gridWidth; i++)
             {
                 GameObject cell = grid[j * gridHeight + i].gameObject;
                 cell.name = (j* gridHeight +i).ToString();
-                cell.GetComponent<RectTransform>().anchoredPosition = new Vector3(-50f * gridWidth / 2 + i * 60f + gridOffset.x, 50f * gridHeight / 2 - j * 60f + gridOffset.y, 0.0f);
+                cell.GetComponent<RectTransform>().anchoredPosition = new Vector3(-50f * gridWidth / 2 + i * 50f + gridOffset.x, 50f * gridHeight / 2 - j * 50f + gridOffset.y, 0.0f);
             }
         }
     }

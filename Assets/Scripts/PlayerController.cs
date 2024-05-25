@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 using System.Net;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private int selectedID;
     private int prevSlot;
+
+    public bool inTutorial = false;
+    public bool canPlay = false;
+    [SerializeField] private DialogueController dialogueController;
 
     // Start is called before the first frame update
     void Update()
@@ -49,6 +54,10 @@ public class PlayerController : MonoBehaviour
                         prevSlot = selectedSlot;
                         break;
                 }
+                if (inTutorial && dialogueController.GetTutorialIsPress() && dialogueController.IsPickUp(selectedSlot))
+                {
+                    dialogueController.FinishTutorial();
+                }
             }
         }
     }
@@ -65,6 +74,10 @@ public class PlayerController : MonoBehaviour
                 {
                     gridInfo.SetItemID(selectedSlot, selectedID);
                     //If the item is a puffer fish tri to combine three
+                    if (selectedID == 3 || selectedID == 5)
+                    {
+                        gridInfo.TryFuseBomb(selectedSlot, selectedID);
+                    }
                 }
                 else if (TryMerge(selectedID, targetID))
                 {
@@ -74,6 +87,10 @@ public class PlayerController : MonoBehaviour
                 {
                     gridInfo.SetItemID(prevSlot, targetID);
                     gridInfo.SetItemID(selectedSlot, selectedID);
+                    if (selectedID == 3 || selectedID == 5)
+                    {
+                        gridInfo.TryFuseBomb(selectedSlot, selectedID);
+                    }
                 }
             }
             else if (selectedSlot == -2)//Mouse is on the bin
@@ -85,6 +102,19 @@ public class PlayerController : MonoBehaviour
                 gridInfo.SetItemID(prevSlot, selectedID);
             }
             selected.SetActive(false);
+
+            if (inTutorial && !dialogueController.GetTutorialIsPress() && dialogueController.IsPickUp(prevSlot) && dialogueController.IsPutDown(selectedSlot))
+            {
+                dialogueController.FinishTutorial();
+            }
+        }
+    }
+
+    public void Shuffle()
+    {
+        if (canPlay && (!inTutorial || (inTutorial && dialogueController.IsValidSlot(-3))))
+        {
+            gridInfo.Shuffle();
         }
     }
 
@@ -97,16 +127,17 @@ public class PlayerController : MonoBehaviour
     //Returns 'true' if we touched or hovering on Unity UI element.
     private int IsPointerOverSlot(List<RaycastResult> eventSystemRaysastResults)
     {
+        if (!canPlay) return -1;
         for (int index = 0; index < eventSystemRaysastResults.Count; index++)
         {
             RaycastResult curRaysastResult = eventSystemRaysastResults[index];
             if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("Slot"))
             {
-                return Convert.ToInt32(curRaysastResult.gameObject.name);
-            }
-            if (curRaysastResult.gameObject.tag == "Bin")
-            {
-                return -2;
+                int id = Convert.ToInt32(curRaysastResult.gameObject.name);
+                if (!inTutorial || (inTutorial && dialogueController.IsValidSlot(id)))
+                {
+                    return id;
+                }
             }
         }
         return -1;

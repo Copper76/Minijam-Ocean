@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using System.Net;
 
 public class PlayerController : MonoBehaviour
 {
@@ -75,6 +76,10 @@ public class PlayerController : MonoBehaviour
                     gridInfo.SetItemID(selectedSlot, selectedID);
                 }
             }
+            else if (selectedSlot == -2)//Mouse is on the bin
+            {
+                
+            }
             else//The pointer is not in on a slot
             {
                 gridInfo.SetItemID(prevSlot, selectedID);
@@ -98,6 +103,10 @@ public class PlayerController : MonoBehaviour
             if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("Slot"))
             {
                 return Convert.ToInt32(curRaysastResult.gameObject.name);
+            }
+            if (curRaysastResult.gameObject.tag == "Bin")
+            {
+                return -2;
             }
         }
         return -1;

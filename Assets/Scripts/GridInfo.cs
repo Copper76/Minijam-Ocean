@@ -1,36 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
-
-public struct CellInfo
-{
-    public GameObject cell;
-    public int cellItemID;
-
-    public CellInfo(GameObject cell, int id = 0)
-    {
-        this.cell = cell;
-        cellItemID = id;
-    }
-}
 
 public class GridInfo : MonoBehaviour
 {
+    public int gridWidth;
+    public int gridHeight;
+    public Vector2 gridOffset;
+
     public CellInfo[] grid;
+
     [SerializeField] private Sprite[] itemSprites;
 
-    public void UpdateSprite(CellInfo cellInfo)
+    private void UpdateSprite(CellInfo cellInfo)
     {
-        cellInfo.cell.GetComponent<Image>().sprite = itemSprites[cellInfo.cellItemID];
+        cellInfo.SetSprite(itemSprites[cellInfo.cellItemID]);
     }
 
-    public void UpdateSprite(int gridID)
-    {
-        UpdateSprite(grid[gridID]);
-    }
-
-    public void SetItemID(CellInfo cellInfo, int itemID)
+    public void SetItemID(ref CellInfo cellInfo, int itemID)
     {
         cellInfo.cellItemID = itemID;
         UpdateSprite(cellInfo);
@@ -38,6 +30,83 @@ public class GridInfo : MonoBehaviour
 
     public void SetItemID(int gridID, int itemID)
     {
-        SetItemID(grid[gridID], itemID);
+        SetItemID(ref grid[gridID], itemID);
+    }
+
+    public int GetItemID(CellInfo cellInfo)
+    {
+        return cellInfo.cellItemID;
+    }
+
+    public int GetItemID(int gridID)
+    {
+        return GetItemID(grid[gridID]);
+    }
+
+    public void Tap(int gridID)
+    {
+        if (grid[gridID].Tap())
+        {
+            int index = FindClosestSlot(gridID);
+            if (index != -1)
+            {
+                SetItemID(index, grid[gridID].GetNextSpawn());
+            }
+        }
+    }
+
+    private int FindClosestSlot(int id)
+    {
+        List<int> nextExplores = new List<int>();
+        List<int> backUpExplores = new List<int>();
+        HashSet<int> explored = new HashSet<int> ();
+        nextExplores.Add(id);
+
+        return BFS(nextExplores, backUpExplores, explored);
+    }
+
+    private int BFS(List<int> nextExplores, List<int> backUpExplores, HashSet<int> explored)
+    {
+        if (nextExplores.Count > 0)
+        {
+            foreach (int id in nextExplores)
+            {
+                if (!explored.Contains(id) && id < gridWidth * gridHeight && id >= 0)
+                {
+                    if (grid[id].cellItemID == 0)//Found empty space
+                    {
+                        return id;
+                    }
+                    else
+                    {
+                        backUpExplores.Add(id-1);
+                        backUpExplores.Add(id+1);
+                        backUpExplores.Add(id-gridWidth);
+                        backUpExplores.Add(id+gridWidth);
+                        explored.Add(id);
+                    }
+                }
+            }
+            nextExplores.Clear();
+            return BFS(backUpExplores, nextExplores, explored);
+        }
+        else//nothing to explore so the board is full
+        {
+            return -1;
+        }
+    }
+
+    public void Shuffle()
+    {
+        grid = grid.OrderBy(x => UnityEngine.Random.value).ToArray();
+        for (int j = 0; j < gridHeight; j++)
+        {
+            for (int i = 0; i < gridWidth; i++)
+            {
+                GameObject cell = grid[j * gridHeight + i].gameObject;
+                cell.name = (j* gridHeight +i).ToString();
+                cell.GetComponent<RectTransform>().anchoredPosition = new Vector3(-50f * gridWidth / 2 + i * 60f + gridOffset.x, 50f * gridHeight / 2 - j * 60f + gridOffset.y, 0.0f);
+            }
+        }
     }
 }

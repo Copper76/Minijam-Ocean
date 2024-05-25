@@ -156,7 +156,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Mini-Jam-159---Ocean
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -816,7 +817,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 2
   cloudProjectId: 02a96df0-265e-478d-8f0f-b9f0bc79dc53
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []

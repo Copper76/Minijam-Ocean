@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -12,6 +11,7 @@ public class GridInfo : MonoBehaviour
     public int gridWidth;
     public int gridHeight;
     public Vector2 gridOffset;
+    public Vector2 cellSize = new Vector2(50.0f, 50.0f);
 
     public CellInfo[] grid;
 
@@ -51,6 +51,7 @@ public class GridInfo : MonoBehaviour
             if (index != -1)
             {
                 SetItemID(index, grid[gridID].GetNextSpawn());
+                grid[gridID].SuccessfulTap();
             }
         }
     }
@@ -106,12 +107,12 @@ public class GridInfo : MonoBehaviour
     public void TryFuseBomb(int id, int itemID)
     {
         List<int> nextExplores = new List<int>();
-        HashSet<int> octopusFound = new HashSet<int>();
+        HashSet<int> materialFound = new HashSet<int>();
         nextExplores.Add(id);
 
-        if (DFS(nextExplores, ref octopusFound, itemID))
+        if (DFS(nextExplores, ref materialFound, itemID))
         {
-            foreach (int i in octopusFound)
+            foreach (int i in materialFound)
             {
                 SetItemID(i, 0);
             }
@@ -119,9 +120,9 @@ public class GridInfo : MonoBehaviour
         }
     }
 
-    private bool DFS(List<int> nextExplores, ref HashSet<int> octopusFound, int itemID)
+    private bool DFS(List<int> nextExplores, ref HashSet<int> materialFound, int itemID)
     {
-        if (octopusFound.Count == 3)
+        if (materialFound.Count == 3)
         {
             return true;
         }
@@ -129,7 +130,7 @@ public class GridInfo : MonoBehaviour
         {
             foreach (int id in nextExplores)
             {
-                if (!octopusFound.Contains(id) && id < gridWidth * gridHeight && id >= 0 && grid[id].cellItemID == itemID)
+                if (!materialFound.Contains(id) && id < gridWidth * gridHeight && id >= 0 && grid[id].cellItemID == itemID)
                 {
                     List<int> nextLevelExplores = new List<int>();
                     if (id % gridWidth != 0)
@@ -142,12 +143,12 @@ public class GridInfo : MonoBehaviour
                     }
                     nextLevelExplores.Add(id - gridWidth);
                     nextLevelExplores.Add(id + gridWidth);
-                    octopusFound.Add(id);
-                    if (DFS(nextLevelExplores, ref octopusFound, itemID))
+                    materialFound.Add(id);
+                    if (DFS(nextLevelExplores, ref materialFound, itemID))
                     {
                         return true;
                     }
-                    octopusFound.Remove(id);
+                    materialFound.Remove(id);
                 }
             }
             return false;

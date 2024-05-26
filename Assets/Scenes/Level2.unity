@@ -838,9 +838,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4392fbb7c123804dad542ec5ad1b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridWidth: 5
-  gridHeight: 5
+  gridWidth: 8
+  gridHeight: 8
   gridOffset: {x: -100, y: 0}
+  cellSize: {x: 50, y: 50}
   grid: []
   itemSprites:
   - {fileID: 0}
@@ -876,6 +877,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridInfo: {fileID: 685811991}
   spawnDataFile: SpawnInfo/SpawnInfo1.json
+  placementData: PlaceInfo/PlaceInfo1.json
+  tutorialController: {fileID: 948449389}
 --- !u!1 &948449385
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +891,7 @@ GameObject:
   - component: {fileID: 948449388}
   - component: {fileID: 948449387}
   - component: {fileID: 948449389}
+  - component: {fileID: 948449391}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -969,47 +973,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11be2296f102cc243a57007219529817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mamaCrab: {fileID: 2062959748}
+  avatar: {fileID: 2062959748}
   speakerDisplay: {fileID: 267877601}
   dialogueTextDisplay: {fileID: 1747001297}
-  nextButton: {fileID: 1125876285}
-  mamaCrabFaces:
-  - {fileID: 21300000, guid: c2af5df3fc7597c46a2a549acd52a397, type: 3}
-  - {fileID: 21300000, guid: 32dca64d3e1034d43a2afcb29649c708, type: 3}
-  dialogueFile: 
-  typeDelay: 0.1
-  dialogues:
-  - mamaFace: 0
-    speaker: Mama Crab
-    dialogueText: Hello World
-    isTutorial: 0
-  - mamaFace: 1
-    speaker: Game
-    dialogueText: Press the first slot
-    isTutorial: 1
-  - mamaFace: 1
-    speaker: Game
-    dialogueText: Drag from first slot to second
-    isTutorial: 1
-  - mamaFace: 1
-    speaker: Game
-    dialogueText: Now Drag from first slot and throw it in the current
-    isTutorial: 1
-  tutorials:
-  - isPress: 1
-    pickUpSlots: 00000000
-    putDownSlots: 
-  - isPress: 0
-    pickUpSlots: 00000000
-    putDownSlots: 01000000
-  - isPress: 0
-    pickUpSlots: 00000000
-    putDownSlots: feffffff
+  nextButton: {fileID: 1125876287}
   grid: {fileID: 685811990}
   bin: {fileID: 511772882}
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
   shuffle: {fileID: 1412083069}
+  avatarFaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  typeDelay: 0.1
+  dialogues:
+  - avatarFace: 0
+    speaker: Tutorial
+    dialogueText: Tutorial
+    isTutorial: 0
+  tutorials: []
+  endDialogues:
+  - avatarFace: 0
+    speaker: Test
+    dialogueText: TestMessage
+    isTutorial: 0
+  gameManager: {fileID: 948449391}
+--- !u!114 &948449391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948449385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecca22db879d2b45a88f06132a66cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextLevelName: Level3
 --- !u!1 &957455838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,7 +1189,8 @@ MonoBehaviour:
   selected: {fileID: 612310983}
   inTutorial: 0
   canPlay: 0
-  dialogueController: {fileID: 948449389}
+  gameOver: 0
+  tutorialController: {fileID: 0}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

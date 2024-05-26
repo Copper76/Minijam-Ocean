@@ -18,16 +18,19 @@ public class PlayerController : MonoBehaviour
     private int selectedID;
     private int prevSlot;
 
+    private Vector3 selectedOffset;
+
     public bool inTutorial = false;
     public bool canPlay = false;
-    [SerializeField] private DialogueController dialogueController;
+    public bool gameOver = false;
+    [SerializeField] private TutorialController tutorialController;
 
     // Start is called before the first frame update
     void Update()
     {
         if (selected.activeInHierarchy)
         {
-            selected.GetComponent<RectTransform>().position = Input.mousePosition;
+            selected.GetComponent<RectTransform>().position = Input.mousePosition + selectedOffset;
         }
     }
 
@@ -46,17 +49,28 @@ public class PlayerController : MonoBehaviour
                     case 1:
                         gridInfo.Tap(selectedSlot);
                         break;
+                    case 2:
+                        gridInfo.Tap(selectedSlot);
+                        break;
+                    case 7:
+
+                    case 8:
+                    case 9:
+                    case 10:
+
                     default:
                         selected.SetActive(true);
                         selected.GetComponent<Image>().sprite = gridInfo.grid[selectedSlot].GetSprite();
+                        selected.GetComponent<RectTransform>().sizeDelta = gridInfo.cellSize;
+                        selectedOffset = Vector3.zero;
                         selectedID = targetID;
                         gridInfo.SetItemID(selectedSlot, 0);
                         prevSlot = selectedSlot;
                         break;
                 }
-                if (inTutorial && dialogueController.GetTutorialIsPress() && dialogueController.IsPickUp(selectedSlot))
+                if (inTutorial && tutorialController.GetTutorialIsPress() && tutorialController.IsPickUp(selectedSlot))
                 {
-                    dialogueController.FinishTutorial();
+                    tutorialController.FinishTutorial();
                 }
             }
         }
@@ -103,16 +117,16 @@ public class PlayerController : MonoBehaviour
             }
             selected.SetActive(false);
 
-            if (inTutorial && !dialogueController.GetTutorialIsPress() && dialogueController.IsPickUp(prevSlot) && dialogueController.IsPutDown(selectedSlot))
+            if (inTutorial && !tutorialController.GetTutorialIsPress() && tutorialController.IsPickUp(prevSlot) && tutorialController.IsPutDown(selectedSlot))
             {
-                dialogueController.FinishTutorial();
+                tutorialController.FinishTutorial();
             }
         }
     }
 
     public void Shuffle()
     {
-        if (canPlay && (!inTutorial || (inTutorial && dialogueController.IsValidSlot(-3))))
+        if (canPlay && (!inTutorial || (inTutorial && tutorialController.IsValidSlot(-3))))
         {
             gridInfo.Shuffle();
         }
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour
             if (curRaysastResult.gameObject.layer == LayerMask.NameToLayer("Slot"))
             {
                 int id = Convert.ToInt32(curRaysastResult.gameObject.name);
-                if (!inTutorial || (inTutorial && dialogueController.IsValidSlot(id)))
+                if (!inTutorial || (inTutorial && tutorialController.IsValidSlot(id)))
                 {
                     return id;
                 }

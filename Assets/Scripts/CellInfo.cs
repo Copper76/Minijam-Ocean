@@ -56,10 +56,11 @@ public class CellInfo : MonoBehaviour
     //Check if the tap is successful
     public bool Tap()
     {
-        if (cooldown > 0)
-        {
-            return false;
-        }
+        return cooldown <= 0;
+    }
+
+    public void SuccessfulTap()
+    {
         tapCount++;
         if (tapCount >= tapLimit)
         {
@@ -67,7 +68,6 @@ public class CellInfo : MonoBehaviour
             cooldown = cooldownLimit;
             image.color = Color.gray;
         }
-        return true;
     }
 
     public int GetNextSpawn()

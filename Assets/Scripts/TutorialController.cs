@@ -4,22 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-using UnityEditor.PackageManager;
 using System.Linq;
 
 [System.Serializable]
 public struct DialogueInfo
 {
-    public int mamaFace;
+    public int avatarFace;
     public string speaker;
     public string dialogueText;
     public bool isTutorial;
 
-    public DialogueInfo(string dialogueText, string speaker, bool isTutorial, int mamaFace = 0)
+    public DialogueInfo(string dialogueText, string speaker, bool isTutorial, int avatarFace = 0)
     {
         this.dialogueText = dialogueText;
         this.speaker = speaker;
-        this.mamaFace = mamaFace;
+        this.avatarFace = avatarFace;
         this.isTutorial = isTutorial;
     }
 }
@@ -32,46 +31,39 @@ public struct TutorialInfo
     public int[] putDownSlots;
 }
 
-public class DialogueController : MonoBehaviour
+public class TutorialController : MonoBehaviour
 {
-    [SerializeField] private Image mamaCrab;
+    [SerializeField] private Image avatar;
     [SerializeField] private TextMeshProUGUI speakerDisplay;
     [SerializeField] private TextMeshProUGUI dialogueTextDisplay;
-    [SerializeField] private GameObject nextButton;
+    [SerializeField] private Button nextButton;
 
-    [SerializeField] private Sprite[] mamaCrabFaces;
-
-    [SerializeField] private string dialogueFile;
-
-    [SerializeField] private float typeDelay;
-
-    [SerializeField] private DialogueInfo[] dialogues;
-    [SerializeField] private TutorialInfo[] tutorials;
     [SerializeField] private Transform grid;
     [SerializeField] private GameObject bin;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Image shade;
     [SerializeField] private Image shuffle;
-    private List<GameObject> highlights = new List<GameObject>();
+
+    [SerializeField] private Sprite[] avatarFaces;
+
+    [SerializeField] private float typeDelay = 0.1f;
+
+    [SerializeField] private DialogueInfo[] dialogues;
+    [SerializeField] private TutorialInfo[] tutorials;
+
+    [SerializeField] private DialogueInfo[] endDialogues;
+
+    [SerializeField] private GameManager gameManager;
 
     private int currentLine = -1;
     private int currentTutorial = -1;
+    private int currentEndDialogue = -1;
 
     // Start is called before the first frame update
-    void Start()
+    public void StartLevel()
     {
+        playerController.canPlay = false;
         NextLine();
-    }
-
-    IEnumerator TypeDialogue(Action onComplete)
-    {
-        string dialogue = dialogues[currentLine].dialogueText;
-        for (int i = 0; i<= dialogue.Length; i++)
-        {
-            dialogueTextDisplay.text = dialogue.Substring(0,i);
-            yield return new WaitForSeconds(typeDelay);
-        }
-        onComplete?.Invoke();
     }
 
     public void NextLine()
@@ -80,7 +72,7 @@ public class DialogueController : MonoBehaviour
         currentLine++;
         if (currentLine < dialogues.Length)
         {
-            mamaCrab.sprite = mamaCrabFaces[dialogues[currentLine].mamaFace];
+            avatar.sprite = avatarFaces[dialogues[currentLine].avatarFace];
             speakerDisplay.text = dialogues[currentLine].speaker;
             StartCoroutine(TypeDialogue(()=>FinishTyping()));
             if (dialogues[currentLine].isTutorial)
@@ -90,9 +82,47 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            dialogueTextDisplay.text = "";
-            nextButton.SetActive(false);
-            playerController.canPlay = true;
+            if (!playerController.gameOver)//Tutorial is over
+            {
+                dialogueTextDisplay.text = "";
+                nextButton.gameObject.SetActive(false);
+                playerController.canPlay = true;
+            }
+            else//Game is over
+            {
+                currentEndDialogue++;
+                if (currentEndDialogue < endDialogues.Length)
+                {
+                    avatar.sprite = avatarFaces[endDialogues[currentEndDialogue].avatarFace];
+                    speakerDisplay.text = endDialogues[currentEndDialogue].speaker;
+                    StartCoroutine(TypeEndDialogue());
+                }
+                else
+                {
+                    gameManager.NextLevel();
+                }
+            }
+        }
+    }
+
+    IEnumerator TypeDialogue(Action onComplete)
+    {
+        string dialogue = dialogues[currentLine].dialogueText;
+        for (int i = 0; i <= dialogue.Length; i++)
+        {
+            dialogueTextDisplay.text = dialogue.Substring(0, i);
+            yield return new WaitForSeconds(typeDelay);
+        }
+        onComplete?.Invoke();
+    }
+
+    IEnumerator TypeEndDialogue()
+    {
+        string dialogue = endDialogues[currentEndDialogue].dialogueText;
+        for (int i = 0; i <= dialogue.Length; i++)
+        {
+            dialogueTextDisplay.text = dialogue.Substring(0, i);
+            yield return new WaitForSeconds(typeDelay);
         }
     }
 
@@ -134,7 +164,7 @@ public class DialogueController : MonoBehaviour
             }
         }
         shade.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-        nextButton.SetActive(true);
+        nextButton.gameObject.SetActive(true);
         playerController.inTutorial = false;
         playerController.canPlay = false;
         NextLine();
@@ -147,12 +177,12 @@ public class DialogueController : MonoBehaviour
 
     public bool IsPickUp(int slot)
     {
-        return tutorials[currentTutorial].pickUpSlots.Contains(slot);
+        return tutorials[currentTutorial].pickUpSlots.Contains(slot) || tutorials[currentTutorial].pickUpSlots.Length == 0;
     }
 
     public bool IsPutDown(int slot)
     {
-        return tutorials[currentTutorial].putDownSlots.Contains(slot);
+        return tutorials[currentTutorial].putDownSlots.Contains(slot) || tutorials[currentTutorial].putDownSlots.Length == 0;
     }
 
     public bool GetTutorialIsPress()
@@ -195,9 +225,12 @@ public class DialogueController : MonoBehaviour
                 grid.GetComponent<GridInfo>().grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
             }
         }
-        nextButton.SetActive(false);
+        nextButton.gameObject.SetActive(false);
         playerController.inTutorial = true;
         playerController.canPlay = true;
-        shade.color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+        if (tutorials[currentTutorial].pickUpSlots.Length != 0 || tutorials[currentTutorial].pickUpSlots.Length != 0)
+        {
+            shade.color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+        }
     }
 }

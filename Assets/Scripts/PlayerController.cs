@@ -319,6 +319,7 @@ public class PlayerController : MonoBehaviour
 
     void Win()
     {
+        audioSource.PlayOneShot(clipDepot.clips[7]);
         canPlay = false;
         gameOver = true;
         tutorialController.NextLine();

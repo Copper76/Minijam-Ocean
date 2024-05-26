@@ -100,6 +100,10 @@ public class GridInitialiser : MonoBehaviour
                             break;
                     }
                 }
+                else
+                {
+                    gridInfo.SetItemID(index, 0);
+                }
             }
         }
         Destroy(this);

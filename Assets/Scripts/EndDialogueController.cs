@@ -15,24 +15,17 @@ public class EndDialogueController : MonoBehaviour
 
     [SerializeField] private Sprite[] avatarFaces;
 
-    [SerializeField] private string dialogueFile;
-
     [SerializeField] private float typeDelay = 0.1f;
 
     [SerializeField] private DialogueInfo[] dialogues;
     [SerializeField] private GameManager gameManager;
-
-    [SerializeField] private bool triggerOnStart = false;
 
     [SerializeField] private int currentLine = -1;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (triggerOnStart)
-        {
-            NextLineEnd();
-        }
+        NextLineEnd();
     }
 
     IEnumerator TypeDialogue()

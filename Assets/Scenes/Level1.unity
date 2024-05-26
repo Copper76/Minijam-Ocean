@@ -627,7 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWidth: 8
   gridHeight: 8
-  gridOffset: {x: -100, y: 0}
+  gridOffset: {x: -100, y: -50}
   cellSize: {x: 100, y: 100}
   grid: []
   itemSprites:
@@ -768,7 +768,6 @@ MonoBehaviour:
   bin: {fileID: 0}
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
-  shuffle: {fileID: 0}
   avatarFaces:
   - {fileID: 0}
   - {fileID: 0}
@@ -983,8 +982,8 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   gameManager: {fileID: 948449391}
-  crabFont: {fileID: 0}
-  tutorialFont: {fileID: 0}
+  crabFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  tutorialFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
 --- !u!114 &948449391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,8 +1087,8 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   - component: {fileID: 963194233}
-  - component: {fileID: 963194232}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1183,7 +1182,7 @@ MonoBehaviour:
   canPlay: 0
   gameOver: 0
   tutorialController: {fileID: 948449389}
-  winningCondition: 0b000000
+  winningCondition: 
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1241,6 +1240,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 375bffb2-9d8b-478a-8e42-00cc02df53c5
     m_ActionName: Mouse/Release[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 948449391}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Menu
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6b318a07-984f-4cea-8a26-7c9addac2f44
+    m_ActionName: Mouse/Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Mouse

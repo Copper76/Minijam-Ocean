@@ -107,8 +107,6 @@ public class GridInfo : MonoBehaviour
             {
                 if (!explored.Contains(id) && id < gridWidth * gridHeight && id >= 0)
                 {
-                    bool valid = true;
-
                     if (grid[id].cellItemID == 0)//Found empty space
                     {
                         return id;
@@ -267,7 +265,6 @@ public class GridInfo : MonoBehaviour
             default:
                 Debug.Log("Error");
                 return false;
-                break;
         }
         return true;
 

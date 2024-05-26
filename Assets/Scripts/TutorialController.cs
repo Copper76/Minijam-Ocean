@@ -39,7 +39,6 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject bin;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Image shade;
-    [SerializeField] private Image shuffle;
 
     [SerializeField] private Sprite[] avatarFaces;
 
@@ -136,10 +135,6 @@ public class TutorialController : MonoBehaviour
             {
                 bin.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
-            else if (slot == -3)
-            {
-                shuffle.GetComponent<RectTransform>().SetParent(gridInfo.transform);
-            }
             else
             {
                 gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(gridInfo.transform);
@@ -150,10 +145,6 @@ public class TutorialController : MonoBehaviour
             if (slot == -2)
             {
                 bin.GetComponent<RectTransform>().SetParent(gridInfo.transform);
-            }
-            else if (slot == -3)
-            {
-                shuffle.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
             else
             {
@@ -218,10 +209,6 @@ public class TutorialController : MonoBehaviour
             {
                 bin.GetComponent<RectTransform>().SetParent(shade.transform);
             }
-            else if (slot == -3)
-            {
-                shuffle.GetComponent<RectTransform>().SetParent(shade.transform);
-            }
             else
             {
                 gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
@@ -232,10 +219,6 @@ public class TutorialController : MonoBehaviour
             if (slot == -2)
             {
                 bin.GetComponent<RectTransform>().SetParent(shade.transform);
-            }
-            else if (slot == -3)
-            {
-                shuffle.GetComponent<RectTransform>().SetParent(shade.transform);
             }
             else
             {

@@ -291,11 +291,11 @@ RectTransform:
   m_Father: {fileID: 685811990}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 100, y: 100}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &511772884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40005052, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridWidth: 8
   gridHeight: 8
-  gridOffset: {x: -100, y: 0}
+  gridOffset: {x: -100, y: -50}
   cellSize: {x: 50, y: 50}
   grid: []
   itemSprites:
@@ -942,7 +942,6 @@ MonoBehaviour:
   bin: {fileID: 511772882}
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
-  shuffle: {fileID: 0}
   avatarFaces:
   - {fileID: 0}
   - {fileID: 0}
@@ -1086,8 +1085,8 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   gameManager: {fileID: 948449390}
-  crabFont: {fileID: 11400000, guid: 5d41a282480abee40904d0bea81b75b2, type: 2}
-  tutorialFont: {fileID: 11400000, guid: ce764a0b73fe62d4197a7589bc228d52, type: 2}
+  crabFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  tutorialFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
 --- !u!114 &948449390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,7 +1099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecca22db879d2b45a88f06132a66cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevelName: Menu
+  nextLevelName: Winning
 --- !u!1 &957455838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,8 +1279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridInfo: {fileID: 685811991}
   selected: {fileID: 612310983}
-  audioSource: {fileID: 0}
-  clipDepot: {fileID: 0}
+  audioSource: {fileID: 963194232}
+  clipDepot: {fileID: 963194233}
   inTutorial: 0
   canPlay: 0
   gameOver: 0
@@ -1344,6 +1343,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 375bffb2-9d8b-478a-8e42-00cc02df53c5
     m_ActionName: Mouse/Release[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 948449390}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Menu
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6b318a07-984f-4cea-8a26-7c9addac2f44
+    m_ActionName: Mouse/Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Mouse

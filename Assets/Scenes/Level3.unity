@@ -841,6 +841,7 @@ MonoBehaviour:
   gridWidth: 5
   gridHeight: 5
   gridOffset: {x: -100, y: 0}
+  cellSize: {x: 50, y: 50}
   grid: []
   itemSprites:
   - {fileID: 0}
@@ -875,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridInfo: {fileID: 685811991}
-  spawnDataFile: SpawnInfo/SpawnInfo1.json
+  spawnDataFile: SpawnInfo/SpawnInfo3.json
   placementData: PlaceInfo/PlaceInfo1.json
   tutorialController: {fileID: 948449389}
 --- !u!1 &948449385
@@ -981,14 +982,103 @@ MonoBehaviour:
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
   shuffle: {fileID: 1412083069}
-  avatarFaces: []
+  avatarFaces:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   typeDelay: 0.1
-  dialogues: []
-  tutorials: []
-  endDialogues:
+  dialogues:
   - avatarFace: 0
-    speaker: Test
-    dialogueText: Test
+    speaker: Mama Crab
+    dialogueText: It just occurred to me...
+    isTutorial: 0
+  - avatarFace: 1
+    speaker: Mama Crab
+    dialogueText: "...When you have as many children as I do, it can sometimes get
+      difficult to remember everybody\u2019s name!"
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: 'Mama Crab '
+    dialogueText: "If there was some way to remind me, for whenever they come back
+      to visit\u2026"
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: Tap on the coral.
+    isTutorial: 1
+  - avatarFace: 1
+    speaker: Game
+    dialogueText: Continue tapping until you find an Octopus!
+    isTutorial: 1
+  - avatarFace: 2
+    speaker: Mama Crab
+    dialogueText: Tickling tentacles!
+    isTutorial: 0
+  - avatarFace: 1
+    speaker: Mama Crab
+    dialogueText: "I won\u2019t ask how that fit inside there\u2026"
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: Merging 3 Octopus will provide Ink. Give it a try!
+    isTutorial: 1
+  - avatarFace: 2
+    speaker: Mama Crab
+    dialogueText: That's perfect! Now, if we can just tag the shells...
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: Drag Ink onto a Complete Shell to tag it!
+    isTutorial: 1
+  tutorials:
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  endDialogues:
+  - avatarFace: 4
+    speaker: Baby Crab 2
+    dialogueText: Cool! Now no one else can have my home!
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: Well, not until you're older!
+    isTutorial: 0
+  - avatarFace: 6
+    speaker: Baby Crab 4
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 3
+    speaker: Baby Crab 1
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 5
+    speaker: Baby Crab 3
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
     isTutorial: 0
   gameManager: {fileID: 948449390}
 --- !u!114 &948449390
@@ -1183,7 +1273,7 @@ MonoBehaviour:
   inTutorial: 0
   canPlay: 0
   gameOver: 0
-  tutorialController: {fileID: 0}
+  tutorialController: {fileID: 948449389}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0

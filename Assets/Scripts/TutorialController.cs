@@ -84,7 +84,7 @@ public class TutorialController : MonoBehaviour
         {
             if (!playerController.gameOver)//Tutorial is over
             {
-                dialogueTextDisplay.text = "";
+                //dialogueTextDisplay.text = "";
                 nextButton.gameObject.SetActive(false);
                 playerController.canPlay = true;
             }

@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (selectedSlot == -2)//Mouse is on the bin
             {
-                
+
             }
             else//The pointer is not in on a slot
             {
@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
     {
         return IsPointerOverSlot(GetEventSystemRaycastResults());
     }
-
 
     //Returns 'true' if we touched or hovering on Unity UI element.
     private int IsPointerOverSlot(List<RaycastResult> eventSystemRaysastResults)
@@ -169,5 +168,11 @@ public class PlayerController : MonoBehaviour
     bool TryMerge(int itemLeft, int itemRight)
     {
         return false;
+    }
+
+    void Win()
+    {
+        canPlay = false;
+        tutorialController.NextLine();
     }
 }

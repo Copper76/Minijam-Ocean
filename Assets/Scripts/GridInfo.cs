@@ -50,7 +50,9 @@ public class GridInfo : MonoBehaviour
             int index = FindClosestSlot(gridID);
             if (index != -1)
             {
-                SetItemID(index, grid[gridID].GetNextSpawn());
+                int id = grid[gridID].GetNextSpawn();
+                SetItemID(index, id);
+                TryFuseBomb(index, id);
                 grid[gridID].SuccessfulTap();
             }
         }

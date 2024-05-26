@@ -985,17 +985,99 @@ MonoBehaviour:
   avatarFaces:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   typeDelay: 0.1
   dialogues:
-  - avatarFace: 0
-    speaker: Tutorial
-    dialogueText: Tutorial
+  - avatarFace: 2
+    speaker: 'Mama Crab '
+    dialogueText: "I\u2019m very grateful for your help, but we\u2019ve still got
+      a ways to go!"
     isTutorial: 0
-  tutorials: []
-  endDialogues:
+  - avatarFace: 1
+    speaker: Mama Crab
+    dialogueText: "Hmmn. It seems we\u2019ve used up all of the shells in this corner
+      of the sea floor! "
+    isTutorial: 0
   - avatarFace: 0
-    speaker: Test
-    dialogueText: TestMessage
+    speaker: Mama Crab
+    dialogueText: 'Perhaps we can find some more? '
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: 'Tap on the Treasure Chest. '
+    isTutorial: 1
+  - avatarFace: 1
+    speaker: Mama Crab
+    dialogueText: "Oh barnacles! That\u2019s way too big, even for me! "
+    isTutorial: 0
+  - avatarFace: 1
+    speaker: Game
+    dialogueText: 'Tap the coral to find a Pufferfish. '
+    isTutorial: 1
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: 'Merge 3 Pufferfish to create a PufferBomb, and break up the Big
+      Shell! '
+    isTutorial: 0
+  - avatarFace: 2
+    speaker: Mama Crab
+    dialogueText: 'Much better! '
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: "Now, if you could just keep on at that\u2026 "
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Game
+    dialogueText: 'Shuffle, merge and match the Pufferfish and Shells, until you
+      find four different sets of Small Shells! '
+    isTutorial: 1
+  tutorials:
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  - isPress: 0
+    pickUpSlots: 
+    putDownSlots: 
+  endDialogues:
+  - avatarFace: 5
+    speaker: Baby Crab 3
+    dialogueText: Mama, look at me!
+    isTutorial: 0
+  - avatarFace: 2
+    speaker: Mama Crab
+    dialogueText: I never saw a prettier shell!
+    isTutorial: 0
+  - avatarFace: 6
+    speaker: Baby Crab 4
+    dialogueText: Woohoo! I love it.
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 4
+    speaker: Baby Crab 2
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 3
+    speaker: Baby Crab 1
+    dialogueText: 
+    isTutorial: 0
+  - avatarFace: 0
+    speaker: Mama Crab
+    dialogueText: 
     isTutorial: 0
   gameManager: {fileID: 948449391}
 --- !u!114 &948449391

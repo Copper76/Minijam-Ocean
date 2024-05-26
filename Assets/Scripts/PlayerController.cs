@@ -8,29 +8,33 @@ using TMPro;
 using Unity.VisualScripting;
 using System.Net;
 using System.Linq;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GridInfo gridInfo;
 
     [SerializeField] private GameObject selected;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private ClipDepot clipDepot;
 
     private int selectedID;
     private int prevSlot;
-
-    private Vector3 selectedOffset;
 
     public bool inTutorial = false;
     public bool canPlay = false;
     public bool gameOver = false;
     [SerializeField] private TutorialController tutorialController;
 
+    [SerializeField] private int[] winningCondition;
+    private List<int> winningCells = new List<int>();
+
     // Start is called before the first frame update
     void Update()
     {
         if (selected.activeInHierarchy)
         {
-            selected.GetComponent<RectTransform>().position = Input.mousePosition + selectedOffset;
+            selected.GetComponent<RectTransform>().position = Input.mousePosition;
         }
     }
 
@@ -48,27 +52,38 @@ public class PlayerController : MonoBehaviour
                         break;
                     case 1:
                         gridInfo.Tap(selectedSlot);
+                        audioSource.PlayOneShot(clipDepot.clips[3]);
                         break;
                     case 2:
                         gridInfo.Tap(selectedSlot);
+                        audioSource.PlayOneShot(clipDepot.clips[4]);
                         break;
                     case 7:
-
+                        break;
                     case 8:
+                        break;
                     case 9:
+                        break;
                     case 10:
-
+                        break;
+                    case 11:
+                        break;
+                    case 12:
+                        break;
+                    case 13:
+                        break;
+                    case 14:
+                        break;
                     default:
                         selected.SetActive(true);
                         selected.GetComponent<Image>().sprite = gridInfo.grid[selectedSlot].GetSprite();
                         selected.GetComponent<RectTransform>().sizeDelta = gridInfo.cellSize;
-                        selectedOffset = Vector3.zero;
                         selectedID = targetID;
                         gridInfo.SetItemID(selectedSlot, 0);
                         prevSlot = selectedSlot;
                         break;
                 }
-                if (inTutorial && tutorialController.GetTutorialIsPress() && tutorialController.IsPickUp(selectedSlot))
+                if (inTutorial && tutorialController.CompleteTutorial(selectedSlot, targetID))
                 {
                     tutorialController.FinishTutorial();
                 }
@@ -84,43 +99,180 @@ public class PlayerController : MonoBehaviour
             if (selectedSlot > -1)//The pointer is on a valid slot
             {
                 int targetID = gridInfo.GetItemID(selectedSlot);
-                if (targetID == 0)
+                switch (targetID)
                 {
-                    gridInfo.SetItemID(selectedSlot, selectedID);
-                    //If the item is a puffer fish tri to combine three
-                    if (selectedID == 3 || selectedID == 5)
-                    {
-                        gridInfo.TryFuseBomb(selectedSlot, selectedID);
-                    }
+                    case 1:
+                        gridInfo.SetItemID(prevSlot, selectedID);
+                        break;
+                    case 2:
+                        gridInfo.SetItemID(prevSlot, selectedID);
+                        break;
+                    case 6:
+                        if (selectedID >=19 && selectedID<23)
+                        {
+                            gridInfo.SetItemID(selectedSlot, selectedID + 4);
+                            audioSource.PlayOneShot(clipDepot.clips[5]);
+                        }
+                        break;
+                    case 7:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot, 7))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 8:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot-1, 7))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 9:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot-gridInfo.gridWidth, 7))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 10:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot-gridInfo.gridWidth-1, 7))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 11:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot, 11))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 12:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot - gridInfo.gridWidth, 11))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 13:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot, 13))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 14:
+                        if (selectedID == 4)
+                        {
+                            if(gridInfo.TryBlow(selectedSlot - 1, 13))
+                            {
+                                audioSource.PlayOneShot(clipDepot.clips[1]);
+                            }
+                        }
+                        else
+                        {
+                            gridInfo.SetItemID(prevSlot, selectedID);
+                        }
+                        break;
+                    case 19:
+                        if (selectedID == 6)
+                        {
+                            gridInfo.SetItemID(selectedSlot, 23);
+                            audioSource.PlayOneShot(clipDepot.clips[5]);
+                        }
+                        break;
+                    case 20:
+                        if (selectedID == 6)
+                        {
+                            gridInfo.SetItemID(selectedSlot, 24);
+                            audioSource.PlayOneShot(clipDepot.clips[5]);
+                        }
+                        break;
+                    case 21:
+                        if (selectedID == 6)
+                        {
+                            gridInfo.SetItemID(selectedSlot, 25);
+                            audioSource.PlayOneShot(clipDepot.clips[5]);
+                        }
+                        break;
+                    case 22:
+                        if (selectedID == 6)
+                        {
+                            gridInfo.SetItemID(selectedSlot, 26);
+                            audioSource.PlayOneShot(clipDepot.clips[5]);
+                        }
+                        break;
+                    default:
+                        gridInfo.SetItemID(prevSlot, targetID);
+                        gridInfo.SetItemID(selectedSlot, selectedID);
+                        gridInfo.TryFuse(selectedSlot, selectedID);
+                        break;
                 }
-                else if (TryMerge(selectedID, targetID))
+
+                CheckWin();
+
+                if (inTutorial && tutorialController.CompleteTutorial(prevSlot, selectedSlot, selectedID, targetID))
                 {
-                    //merge scenario
-                }
-                else
-                {
-                    gridInfo.SetItemID(prevSlot, targetID);
-                    gridInfo.SetItemID(selectedSlot, selectedID);
-                    if (selectedID == 3 || selectedID == 5)
-                    {
-                        gridInfo.TryFuseBomb(selectedSlot, selectedID);
-                    }
+                    tutorialController.FinishTutorial();
                 }
             }
             else if (selectedSlot == -2)//Mouse is on the bin
             {
-
+                audioSource.PlayOneShot(clipDepot.clips[6]);
+                if (inTutorial && tutorialController.CompleteTutorial(prevSlot, selectedSlot, selectedID, -2))
+                {
+                    tutorialController.FinishTutorial();
+                }
             }
             else//The pointer is not in on a slot
             {
                 gridInfo.SetItemID(prevSlot, selectedID);
             }
             selected.SetActive(false);
-
-            if (inTutorial && !tutorialController.GetTutorialIsPress() && tutorialController.IsPickUp(prevSlot) && tutorialController.IsPutDown(selectedSlot))
-            {
-                tutorialController.FinishTutorial();
-            }
         }
     }
 
@@ -165,14 +317,24 @@ public class PlayerController : MonoBehaviour
         return raysastResults;
     }
 
-    bool TryMerge(int itemLeft, int itemRight)
-    {
-        return false;
-    }
-
     void Win()
     {
         canPlay = false;
+        gameOver = true;
         tutorialController.NextLine();
+    }
+
+    void CheckWin()
+    {
+        winningCells = winningCondition.ToList();
+        foreach (CellInfo cell in gridInfo.grid)
+        {
+            winningCells.Remove(cell.cellItemID);
+            if (winningCells.Count == 0)
+            {
+                Win();
+                break;
+            }
+        }
     }
 }

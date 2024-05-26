@@ -81,7 +81,7 @@ public class GridInitialiser : MonoBehaviour
                 cell.layer = 6;
                 CellInfo cellInfo = cell.AddComponent<CellInfo>();
                 cellInfo.SetImage(cell.AddComponent<Image>());
-                cell.GetComponent<RectTransform>().anchoredPosition = new Vector3(-50f * gridInfo.gridWidth / 2 + i * 50f + gridInfo.gridOffset.x, 50f * gridInfo.gridHeight / 2 - j * 50f + gridInfo.gridOffset.y, 0.0f);
+                cell.GetComponent<RectTransform>().anchoredPosition = new Vector3(-gridInfo.cellSize.x * gridInfo.gridWidth / 2 + i * gridInfo.cellSize.x + gridInfo.gridOffset.x, gridInfo.cellSize.x * gridInfo.gridHeight / 2 - j * gridInfo.cellSize.x + gridInfo.gridOffset.y, 0.0f);
                 cell.GetComponent<RectTransform>().sizeDelta = gridInfo.cellSize;
                 gridInfo.grid[index] = cellInfo;
                 if (placeInfo.ContainsKey(index))

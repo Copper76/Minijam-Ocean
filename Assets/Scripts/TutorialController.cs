@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using static UnityEngine.GraphicsBuffer;
 
 [System.Serializable]
 public struct DialogueInfo
@@ -13,14 +14,8 @@ public struct DialogueInfo
     public string speaker;
     public string dialogueText;
     public bool isTutorial;
-
-    public DialogueInfo(string dialogueText, string speaker, bool isTutorial, int avatarFace = 0)
-    {
-        this.dialogueText = dialogueText;
-        this.speaker = speaker;
-        this.avatarFace = avatarFace;
-        this.isTutorial = isTutorial;
-    }
+    public int[] spawnLocs;
+    public int[] spawnIDs;
 }
 
 [System.Serializable]
@@ -29,6 +24,8 @@ public struct TutorialInfo
     public bool isPress;
     public int[] pickUpSlots;
     public int[] putDownSlots;
+    public int[] pickUpIDs;
+    public int[] putDownIDs;
 }
 
 public class TutorialController : MonoBehaviour
@@ -38,7 +35,7 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueTextDisplay;
     [SerializeField] private Button nextButton;
 
-    [SerializeField] private Transform grid;
+    [SerializeField] private GridInfo gridInfo;
     [SerializeField] private GameObject bin;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Image shade;
@@ -54,6 +51,8 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private DialogueInfo[] endDialogues;
 
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private TMP_FontAsset crabFont;
+    [SerializeField] private TMP_FontAsset tutorialFont;
 
     private int currentLine = -1;
     private int currentTutorial = -1;
@@ -73,29 +72,43 @@ public class TutorialController : MonoBehaviour
         if (currentLine < dialogues.Length)
         {
             avatar.sprite = avatarFaces[dialogues[currentLine].avatarFace];
-            speakerDisplay.text = dialogues[currentLine].speaker;
-            StartCoroutine(TypeDialogue(()=>FinishTyping()));
+            for (int i = 0; i < dialogues[currentLine].spawnIDs.Length; i++)
+            {
+                gridInfo.SetItemID(dialogues[currentLine].spawnLocs[i], dialogues[currentLine].spawnIDs[i]);
+            }
             if (dialogues[currentLine].isTutorial)
             {
                 StartTutorial();
+                dialogueTextDisplay.font = tutorialFont;
+                speakerDisplay.font = tutorialFont;
             }
+            else
+            {
+                dialogueTextDisplay.font = crabFont;
+                speakerDisplay.font = crabFont;
+            }
+            speakerDisplay.text = dialogues[currentLine].speaker;
+            StartCoroutine(TypeDialogue(dialogues[currentLine].dialogueText));
         }
         else
         {
             if (!playerController.gameOver)//Tutorial is over
             {
-                //dialogueTextDisplay.text = "";
+                dialogueTextDisplay.text = dialogues[currentLine-1].dialogueText;
                 nextButton.gameObject.SetActive(false);
                 playerController.canPlay = true;
             }
             else//Game is over
             {
                 currentEndDialogue++;
+                dialogueTextDisplay.font = crabFont;
+                speakerDisplay.font = crabFont;
+                nextButton.gameObject.SetActive(true);
                 if (currentEndDialogue < endDialogues.Length)
                 {
                     avatar.sprite = avatarFaces[endDialogues[currentEndDialogue].avatarFace];
                     speakerDisplay.text = endDialogues[currentEndDialogue].speaker;
-                    StartCoroutine(TypeEndDialogue());
+                    StartCoroutine(TypeDialogue(endDialogues[currentEndDialogue].dialogueText));
                 }
                 else
                 {
@@ -105,30 +118,14 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    IEnumerator TypeDialogue(Action onComplete)
+    IEnumerator TypeDialogue(string dialogue)
     {
-        string dialogue = dialogues[currentLine].dialogueText;
+        //string dialogue = dialogues[currentLine].dialogueText;
         for (int i = 0; i <= dialogue.Length; i++)
         {
             dialogueTextDisplay.text = dialogue.Substring(0, i);
             yield return new WaitForSeconds(typeDelay);
         }
-        onComplete?.Invoke();
-    }
-
-    IEnumerator TypeEndDialogue()
-    {
-        string dialogue = endDialogues[currentEndDialogue].dialogueText;
-        for (int i = 0; i <= dialogue.Length; i++)
-        {
-            dialogueTextDisplay.text = dialogue.Substring(0, i);
-            yield return new WaitForSeconds(typeDelay);
-        }
-    }
-
-    void FinishTyping()
-    {
-
     }
 
     public void FinishTutorial()
@@ -137,30 +134,30 @@ public class TutorialController : MonoBehaviour
         {
             if (slot == -2)
             {
-                bin.GetComponent<RectTransform>().SetParent(grid.transform);
+                bin.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
             else if (slot == -3)
             {
-                shuffle.GetComponent<RectTransform>().SetParent(grid.transform);
+                shuffle.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
             else
             {
-                grid.GetComponent<GridInfo>().grid[slot].GetComponent<RectTransform>().SetParent(grid.transform);
+                gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
         }
         foreach (int slot in tutorials[currentTutorial].putDownSlots)
         {
             if (slot == -2)
             {
-                bin.GetComponent<RectTransform>().SetParent(grid.transform);
+                bin.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
             else if (slot == -3)
             {
-                shuffle.GetComponent<RectTransform>().SetParent(grid.transform);
+                shuffle.GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
             else
             {
-                grid.GetComponent<GridInfo>().grid[slot].GetComponent<RectTransform>().SetParent(grid.transform);
+                gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(gridInfo.transform);
             }
         }
         shade.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -185,9 +182,29 @@ public class TutorialController : MonoBehaviour
         return tutorials[currentTutorial].putDownSlots.Contains(slot) || tutorials[currentTutorial].putDownSlots.Length == 0;
     }
 
+    public bool ValidPickUp(int itemID)
+    {
+        return tutorials[currentTutorial].pickUpIDs.Contains(itemID) || tutorials[currentTutorial].pickUpIDs.Length == 0;
+    }
+
+    public bool ValidPutDown(int itemID)
+    {
+        return tutorials[currentTutorial].putDownIDs.Contains(itemID) || tutorials[currentTutorial].putDownIDs.Length == 0;
+    }
+
     public bool GetTutorialIsPress()
     {
         return tutorials[currentTutorial].isPress;
+    }
+
+    public bool CompleteTutorial(int selectedSlot, int selectedID)
+    {
+        return GetTutorialIsPress() && IsPickUp(selectedSlot) && ValidPickUp(selectedID);
+    }
+
+    public bool CompleteTutorial(int prevSlot, int selectedSlot, int selectedID, int targetID)
+    {
+        return !GetTutorialIsPress() && IsPickUp(prevSlot) && IsPutDown(selectedSlot) && ValidPickUp(selectedID) && ValidPutDown(targetID);
     }
 
     public 
@@ -207,7 +224,7 @@ public class TutorialController : MonoBehaviour
             }
             else
             {
-                grid.GetComponent<GridInfo>().grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
+                gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
             }
         }
         foreach (int slot in tutorials[currentTutorial].putDownSlots)
@@ -222,9 +239,10 @@ public class TutorialController : MonoBehaviour
             }
             else
             {
-                grid.GetComponent<GridInfo>().grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
+                gridInfo.grid[slot].GetComponent<RectTransform>().SetParent(shade.transform);
             }
         }
+
         nextButton.gameObject.SetActive(false);
         playerController.inTutorial = true;
         playerController.canPlay = true;

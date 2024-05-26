@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267877601
@@ -538,7 +538,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400, y: 600}
+  m_SizeDelta: {x: 400, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948449387
 MonoBehaviour:
@@ -618,20 +618,28 @@ MonoBehaviour:
     speaker: Mama Crab
     dialogueText: 'Thank goodness you''re here! I could really use your help. '
     isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
   - avatarFace: 0
     speaker: Mama Crab
     dialogueText: 'You see, my babies are growing up so fast. I can''t believe it,
       but it''s time for them to find their very own shell! '
     isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
   - avatarFace: 1
     speaker: Mama Crab
     dialogueText: The problem is, none of these are small enough to make a first
       home for my poor darlings.
     isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
   - avatarFace: 2
     speaker: Mama Crab
     dialogueText: Now that you're here, though, I have a feeling our luck may change!
     isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
   gameManager: {fileID: 948449389}
   triggerOnStart: 1
   currentLine: -1
@@ -1041,8 +1049,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -125}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 200, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747001297
 MonoBehaviour:

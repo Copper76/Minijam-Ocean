@@ -631,13 +631,13 @@ MonoBehaviour:
   cellSize: {x: 100, y: 100}
   grid: []
   itemSprites:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: c2af5df3fc7597c46a2a549acd52a397, type: 3}
-  - {fileID: 21300000, guid: 338f5d114617aa444a00683dbf97af91, type: 3}
-  - {fileID: 21300000, guid: 32dca64d3e1034d43a2afcb29649c708, type: 3}
-  - {fileID: 21300000, guid: 1d9fb1a71499f3040b62f3764930244a, type: 3}
-  - {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
-  - {fileID: 21300000, guid: d4780dc1205c7c7478c970d8c61d24e8, type: 3}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: d4b9ae8f9110aaf439b94453ff383d80, type: 3}
+  - {fileID: 21300000, guid: 91d14466557559040930965171bf2dfc, type: 3}
+  - {fileID: 21300000, guid: 3351fbf1bca104041b74f291d3a76f91, type: 3}
+  - {fileID: 21300000, guid: b0dbd1c0137b3ad4cbd1f822ce7f903b, type: 3}
+  - {fileID: 21300000, guid: 76e8fe5c3111a0d4490b02952042fdb8, type: 3}
+  - {fileID: 21300000, guid: 2a75432fac7154647a54037dff1e40d6, type: 3}
   - {fileID: -58953470, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
   - {fileID: 1071779689, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
   - {fileID: 284492034, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
@@ -772,19 +772,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1eddf02414c65144e9c3f0a87ac0e3ec, type: 3}
   - {fileID: 21300000, guid: 6f6eff40771b98943ad32e3478391dcb, type: 3}
   - {fileID: 21300000, guid: f716173d1aa8a3145a44fdfa464bbef9, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 9de302f3d96e62f4e8f6c73e9a67a62d, type: 3}
+  - {fileID: 21300000, guid: 558d6dba3f18fcd4c88f3b9c6b1d8399, type: 3}
+  - {fileID: 21300000, guid: fde739af0e56dba4b9baaae40151cd53, type: 3}
+  - {fileID: 21300000, guid: 787222edd0e2c404c855913d10d1ac4c, type: 3}
   typeDelay: 0.1
   dialogues:
   - avatarFace: 0
-    speaker: 'Mama Crab '
-    dialogueText: As lovely as these shells are, my babies aren't that grown just
-      yet!
+    speaker: 
+    dialogueText: 
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
+  - avatarFace: 0
+    speaker: 'Mama Crab '
+    dialogueText: As lovely as these shells are, my babies aren't that big just yet!
+    isTutorial: 0
+    spawnLocs: 21000000290000002d00000035000000060000000e0000001d0000001e000000
+    spawnIDs: 0b0000000c0000000b0000000c0000000b0000000c0000000d0000000e000000
   - avatarFace: 1
     speaker: 'Mama Crab '
     dialogueText: If only there was some way to make them smaller...
@@ -792,59 +797,41 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
-    speaker: Game
-    dialogueText: Tap on the coral.
-    isTutorial: 1
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 2
-    speaker: Game
-    dialogueText: Great! Try that again.
-    isTutorial: 1
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 1
     speaker: 'Mama Crab '
-    dialogueText: Oh clams, they're spikey! Good thinking, but how will we use them?
+    dialogueText: Oh clams, they're spikey! Perhaps we can use them somehow?
     isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 1
-    speaker: Game
-    dialogueText: Drag and drop one Pufferfish next to the other.
-    isTutorial: 1
-    spawnLocs: 1b0000001c000000
+    spawnLocs: 1a00000023000000
     spawnIDs: 0300000003000000
   - avatarFace: 0
-    speaker: 'Mama Crab '
-    dialogueText: Hmmn. Perhaps third time's the charm?
-    isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 0
-    speaker: Game
+    speaker: 
     dialogueText: Tap on the coral.
-    isTutorial: 1
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 0
-    speaker: Game
-    dialogueText: To merge pufferfish into a BubbleBomb, drag and drop three next
-      to one another.
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 2
     speaker: Mama Crab
+    dialogueText: I've always liked things that come in threes!
+    isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
+  - avatarFace: 0
+    speaker: 
+    dialogueText: 'To merge Pufferfish into a BubbleBomb, place a set of three next
+      to one another. '
+    isTutorial: 1
+    spawnLocs: 
+    spawnIDs: 
+  - avatarFace: 2
+    speaker: 'Mama Crab '
     dialogueText: Well colour me coral, would you look at that!
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
-    speaker: Game
+    speaker: 
     dialogueText: Drag the BubbleBomb onto a shell to break it.
     isTutorial: 1
-    spawnLocs: 
+    spawnLocs: 0000000000000000
     spawnIDs: 
   - avatarFace: 2
     speaker: Mama Crab
@@ -852,22 +839,10 @@ MonoBehaviour:
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
-  - avatarFace: 1
+  - avatarFace: 0
     speaker: Mama Crab
-    dialogueText: Now, they're almost perfect...
+    dialogueText: They're almost perfect, but something's missing.
     isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 1
-    speaker: Game
-    dialogueText: Tap on the coral.
-    isTutorial: 1
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 1
-    speaker: Game
-    dialogueText: Keep tapping to find more Pufferfish!
-    isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 2
@@ -877,14 +852,14 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
-    speaker: Game
+    speaker: 
     dialogueText: Move Pufferfish, BubbleBombs or Small Shells around, into available
       spaces!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
-    speaker: Game
+    speaker: 
     dialogueText: Attempt to create more small shells!
     isTutorial: 1
     spawnLocs: 
@@ -896,10 +871,10 @@ MonoBehaviour:
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
-  - avatarFace: 2
-    speaker: Game
-    dialogueText: Merge 3 Small Shells of the same type.
-    isTutorial: 0
+  - avatarFace: 0
+    speaker: 
+    dialogueText: Merge 3 Small Shells of the same type!
+    isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   tutorials:
@@ -914,9 +889,9 @@ MonoBehaviour:
     pickUpIDs: 
     putDownIDs: 
   - isPress: 0
-    pickUpSlots: 0100000003000000090000000a0000000b000000
-    putDownSlots: 1d000000
-    pickUpIDs: 03000000
+    pickUpSlots: 
+    putDownSlots: 21000000290000002d00000035000000060000000e0000001d0000001e000000
+    pickUpIDs: 04000000
     putDownIDs: 
   - isPress: 0
     pickUpSlots: 
@@ -959,27 +934,15 @@ MonoBehaviour:
     pickUpIDs: 
     putDownIDs: 
   endDialogues:
-  - avatarFace: 3
-    speaker: ' Baby Crab 1'
-    dialogueText: Wow! My very own home!
+  - avatarFace: 4
+    speaker: Baby Crab
+    dialogueText: ' Wow! Our very own home!'
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
     speaker: Mama Crab
     dialogueText: Oh, they grow up so fast...
-    isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 4
-    speaker: Baby Crab 2
-    dialogueText: It's a perfect fit
-    isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
-  - avatarFace: 1
-    speaker: Mama Crab
-    dialogueText: As snug as a crab in a ... shell?
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -1276,15 +1239,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: d90ef9b7acf06154ab9af67c62f98354, type: 3}
+  - {fileID: 8300000, guid: 755423eabf57dbf469ac9dfa0cf9438f, type: 3}
+  - {fileID: 8300000, guid: f371eda1f0ca2d54b99ef55ed7e658d7, type: 3}
+  - {fileID: 8300000, guid: 6db6c9aeb4333204d9ad91e0cf1d0c37, type: 3}
+  - {fileID: 8300000, guid: 0f04142cd2fc0c244956cccf73987ce4, type: 3}
+  - {fileID: 8300000, guid: 8f76548eed3a87c48825a3a166d8b6fb, type: 3}
+  - {fileID: 8300000, guid: d58d3356de13cc34abc4a7f44154fa37, type: 3}
+  - {fileID: 8300000, guid: aed89105ecd1fa84d823e35a320a2943, type: 3}
+  - {fileID: 8300000, guid: 9633defe3b5dc1240bc431f830ad8a5e, type: 3}
 --- !u!82 &963194232
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2066,7 +2029,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 1eddf02414c65144e9c3f0a87ac0e3ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 128, y: 100}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &511772884
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: e20d03330b004894a90fe024ae71871a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -708,13 +708,13 @@ MonoBehaviour:
   cellSize: {x: 100, y: 100}
   grid: []
   itemSprites:
-  - {fileID: 0}
-  - {fileID: 21300000, guid: c2af5df3fc7597c46a2a549acd52a397, type: 3}
-  - {fileID: 21300000, guid: 338f5d114617aa444a00683dbf97af91, type: 3}
-  - {fileID: 21300000, guid: 32dca64d3e1034d43a2afcb29649c708, type: 3}
-  - {fileID: 21300000, guid: 1d9fb1a71499f3040b62f3764930244a, type: 3}
-  - {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
-  - {fileID: 21300000, guid: d4780dc1205c7c7478c970d8c61d24e8, type: 3}
+  - {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 21300000, guid: d4b9ae8f9110aaf439b94453ff383d80, type: 3}
+  - {fileID: 21300000, guid: 91d14466557559040930965171bf2dfc, type: 3}
+  - {fileID: 21300000, guid: 3351fbf1bca104041b74f291d3a76f91, type: 3}
+  - {fileID: 21300000, guid: b0dbd1c0137b3ad4cbd1f822ce7f903b, type: 3}
+  - {fileID: 21300000, guid: 76e8fe5c3111a0d4490b02952042fdb8, type: 3}
+  - {fileID: 21300000, guid: 2a75432fac7154647a54037dff1e40d6, type: 3}
   - {fileID: -58953470, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
   - {fileID: 1071779689, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
   - {fileID: 284492034, guid: b8a71f9f000630340869c4caf1158bf6, type: 3}
@@ -846,15 +846,21 @@ MonoBehaviour:
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
   avatarFaces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 1eddf02414c65144e9c3f0a87ac0e3ec, type: 3}
+  - {fileID: 21300000, guid: 6f6eff40771b98943ad32e3478391dcb, type: 3}
+  - {fileID: 21300000, guid: f716173d1aa8a3145a44fdfa464bbef9, type: 3}
+  - {fileID: 21300000, guid: 9de302f3d96e62f4e8f6c73e9a67a62d, type: 3}
+  - {fileID: 21300000, guid: 558d6dba3f18fcd4c88f3b9c6b1d8399, type: 3}
+  - {fileID: 21300000, guid: fde739af0e56dba4b9baaae40151cd53, type: 3}
+  - {fileID: 21300000, guid: 787222edd0e2c404c855913d10d1ac4c, type: 3}
   typeDelay: 0.1
   dialogues:
+  - avatarFace: 0
+    speaker: 
+    dialogueText: 
+    isTutorial: 0
+    spawnLocs: 
+    spawnIDs: 
   - avatarFace: 2
     speaker: 'Mama Crab '
     dialogueText: "I\u2019m very grateful for your help, but we\u2019ve still got
@@ -876,7 +882,7 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
-    speaker: Game
+    speaker: 
     dialogueText: 'Tap on the Treasure Chest. '
     isTutorial: 1
     spawnLocs: 
@@ -888,16 +894,16 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
-    speaker: Game
+    speaker: 
     dialogueText: 'Tap the coral to find a Pufferfish. '
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
-  - avatarFace: 0
-    speaker: Game
-    dialogueText: 'Merge 3 Pufferfish to create a PufferBomb, and break up the Big
+  - avatarFace: 1
+    speaker: 
+    dialogueText: 'Merge 3 Pufferfish to create a BubbleBomb, and break up the Big
       Shell! '
-    isTutorial: 0
+    isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 2
@@ -907,15 +913,22 @@ MonoBehaviour:
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
+    speaker: 
+    dialogueText: 'If you ever get stuck or need to free up space, drag and drop
+      single-square items into the whirlpool to discard them. '
+    isTutorial: 1
+    spawnLocs: 
+    spawnIDs: 
+  - avatarFace: 0
     speaker: Mama Crab
-    dialogueText: "Now, if you could just keep on at that\u2026 "
+    dialogueText: Now, if you wouldn't mind keeping on at it...
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
-    speaker: Game
-    dialogueText: 'Shuffle, merge and match the Pufferfish and Shells, until you
-      find four different sets of Small Shells! '
+    speaker: 
+    dialogueText: Shuffle, merge and match the Pufferfish and Shells, until you make
+      four completed sets of Custom Shells.
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
@@ -937,14 +950,14 @@ MonoBehaviour:
     putDownIDs: 
   endDialogues:
   - avatarFace: 5
-    speaker: Baby Crab 3
-    dialogueText: Mama, look at me!
+    speaker: Baby Crab
+    dialogueText: It's a perfect fit!
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
-  - avatarFace: 2
+  - avatarFace: 0
     speaker: Mama Crab
-    dialogueText: I never saw a prettier shell!
+    dialogueText: As snug as a crab in a...shell?
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -1276,7 +1289,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae8aa68d18fa3046898949a8a087cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: d90ef9b7acf06154ab9af67c62f98354, type: 3}
+  - {fileID: 8300000, guid: 755423eabf57dbf469ac9dfa0cf9438f, type: 3}
+  - {fileID: 8300000, guid: f371eda1f0ca2d54b99ef55ed7e658d7, type: 3}
+  - {fileID: 8300000, guid: 6db6c9aeb4333204d9ad91e0cf1d0c37, type: 3}
+  - {fileID: 8300000, guid: 0f04142cd2fc0c244956cccf73987ce4, type: 3}
+  - {fileID: 8300000, guid: 8f76548eed3a87c48825a3a166d8b6fb, type: 3}
+  - {fileID: 8300000, guid: d58d3356de13cc34abc4a7f44154fa37, type: 3}
+  - {fileID: 8300000, guid: aed89105ecd1fa84d823e35a320a2943, type: 3}
+  - {fileID: 8300000, guid: 9633defe3b5dc1240bc431f830ad8a5e, type: 3}
 --- !u!82 &963194232
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1571,7 +1593,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 36a12bf9f13ad334c9fa7d5da290bd53, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: ca90588a250fc6e4cb5ef3bc582c1dcc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2058,7 +2080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 1eddf02414c65144e9c3f0a87ac0e3ec, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

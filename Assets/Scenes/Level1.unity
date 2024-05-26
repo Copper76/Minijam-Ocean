@@ -769,7 +769,9 @@ MonoBehaviour:
   playerController: {fileID: 963194229}
   shade: {fileID: 1632034765}
   avatarFaces:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 1eddf02414c65144e9c3f0a87ac0e3ec, type: 3}
+  - {fileID: 21300000, guid: 6f6eff40771b98943ad32e3478391dcb, type: 3}
+  - {fileID: 21300000, guid: f716173d1aa8a3145a44fdfa464bbef9, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1048,15 +1050,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.84137845, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 4fb2ff3ce4a85424da2888c33d37bb74, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1577,7 +1579,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 36a12bf9f13ad334c9fa7d5da290bd53, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: ca90588a250fc6e4cb5ef3bc582c1dcc, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -196,7 +196,7 @@ public class GridInfo : MonoBehaviour
         }
     }
 
-    public void TryFuse(int id, int itemID)
+    public bool TryFuse(int id, int itemID)
     {
         if (fuseRecipe.ContainsKey(itemID))
         {
@@ -212,8 +212,10 @@ public class GridInfo : MonoBehaviour
                     SetItemID(i, 0);
                 }
                 SetItemID(id, fuseRecipe[itemID]);
+                return true;
             }
         }
+        return false;
     }
 
     public bool TryBlow(int id, int itemID)

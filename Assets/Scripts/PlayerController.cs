@@ -249,7 +249,10 @@ public class PlayerController : MonoBehaviour
                     default:
                         gridInfo.SetItemID(prevSlot, targetID);
                         gridInfo.SetItemID(selectedSlot, selectedID);
-                        gridInfo.TryFuse(selectedSlot, selectedID);
+                        if (gridInfo.TryFuse(selectedSlot, selectedID))
+                        {
+                            audioSource.PlayOneShot(clipDepot.clips[0]);
+                        }
                         break;
                 }
 

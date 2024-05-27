@@ -665,7 +665,7 @@ MonoBehaviour:
     spawnIDs: 0300000003000000
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral.
+    dialogueText: Tap on the Coral.
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
@@ -708,19 +708,19 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral to find more Pufferfish!
+    dialogueText: Tap on the Coral to find more Pufferfish!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral to find more Pufferfish!
+    dialogueText: Tap on the Coral to find more Pufferfish!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral to find more Pufferfish!
+    dialogueText: Tap on the Coral to find more Pufferfish!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
@@ -732,21 +732,21 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: You can try shuffling Pufferfish, BubbleBombs and small shells
+    dialogueText: You can try shuffling Pufferfish, BubbleBombs and Small Shells
       around, into available spaces.
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 2
     speaker: Mama Crab
-    dialogueText: 'Perhaps if we can gather three of each small shell, to find the
+    dialogueText: 'Perhaps if we can gather three of each Small Shell, to find the
       perfect fit? '
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Merge 3 Small Shells of the same type to create a custom shell
+    dialogueText: Merge three Small Shells of the same type to create a Custom Shell!
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -1773,8 +1773,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

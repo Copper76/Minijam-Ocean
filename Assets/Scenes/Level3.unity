@@ -825,39 +825,39 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8773b95f32bea3a4eae4a880c9435e03, type: 3}
   typeDelay: 0.02
   dialogues:
-  - avatarFace: 2
+  - avatarFace: 0
     speaker: Mama Crab
     dialogueText: And now, for the finishing touches!
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
-  - avatarFace: 0
+  - avatarFace: 2
     speaker: 'Mama Crab '
-    dialogueText: ...Something to make their very first shell that extra bit special.
+    dialogueText: ...Something to make their very first shell that extra bit special!
     isTutorial: 0
-    spawnLocs: 1c00000023000000
-    spawnIDs: 0500000005000000
+    spawnLocs: 0000000000000000
+    spawnIDs: 0000000000000000
   - avatarFace: 1
     speaker: Mama Crab
     dialogueText: Tickling Tentacles! What do you suppose we do with these?
     isTutorial: 0
-    spawnLocs: 
-    spawnIDs: 
+    spawnLocs: 1c00000023000000
+    spawnIDs: 0500000005000000
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral until you find a third Octopus!
+    dialogueText: Tap on the Coral until you find a third Octopus!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral until you find a third Octopus!
+    dialogueText: Tap on the Coral until you find a third Octopus!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Tap on the coral until you find a third Octopus!
+    dialogueText: Tap on the Coral until you find a third Octopus!
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
@@ -875,7 +875,8 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 2
     speaker: Mama Crab
-    dialogueText: Oh Perfect! Now, if you wouldn't mind helping me personalise them...
+    dialogueText: Oh, perfect! Now, if you wouldn't mind helping me personalise the
+      shells...
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -893,8 +894,8 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Shuffle, merge and match the items, until you have four completed
-      sets of Decorated Custom Shells!
+    dialogueText: Shuffle, match and merge the items, until you have four different
+      Decorated Custom Shells!
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -1229,7 +1230,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 450881f32424ee549995d0d37a94ce15, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 1
   Mute: 0

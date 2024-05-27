@@ -493,8 +493,8 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 1
     speaker: Mama Crab
-    dialogueText: The problem is, none of these are small enough to make a first
-      home for my poor darlings.
+    dialogueText: The problem is, I can't find any small enough to make a first home
+      for my poor darlings.
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -679,9 +679,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 226f63d7ec92c344eb8793dbf939a1d2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.75
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

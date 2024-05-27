@@ -758,14 +758,14 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 1
     speaker: 
-    dialogueText: 'Tap the coral to find a Pufferfish. '
+    dialogueText: 'Tap the Coral to find a Pufferfish. '
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
   - avatarFace: 1
     speaker: 
-    dialogueText: 'Merge 3 Pufferfish to create a BubbleBomb, and break up the Big
-      Shell! '
+    dialogueText: 'Merge three Pufferfish to create a BubbleBomb, and break up the
+      Big Shell! '
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
@@ -778,7 +778,7 @@ MonoBehaviour:
   - avatarFace: 0
     speaker: 
     dialogueText: 'If you ever get stuck or need to free up space, drag and drop
-      single-square items into the whirlpool to discard them. '
+      single-square items into the Whirlpool to discard them. '
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -790,8 +790,8 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Shuffle, merge and match the Pufferfish and Shells, until you make
-      four completed sets of Custom Shells.
+    dialogueText: Shuffle, match and merge the Pufferfish and Shells, until you make
+      four different Custom Shells.
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -820,7 +820,7 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: Mama Crab
-    dialogueText: As snug as a crab in a...shell?
+    dialogueText: As snug as a crab in a... shell?
     isTutorial: 0
     spawnLocs: 
     spawnIDs: 
@@ -1798,8 +1798,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

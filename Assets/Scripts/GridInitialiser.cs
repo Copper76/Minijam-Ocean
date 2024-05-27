@@ -91,7 +91,7 @@ public class GridInitialiser : MonoBehaviour
                     switch (id)
                     {
                         case 1:
-                            cellInfo.SetLimits(7, 10.0f);
+                            cellInfo.SetLimits(7, 5.0f);
                             cellInfo.SetSpawnList(spawnInfo[id]);
                             break;
                         case 2:

@@ -881,7 +881,7 @@ MonoBehaviour:
     spawnIDs: 
   - avatarFace: 0
     speaker: 
-    dialogueText: Drag the Ink onto Custom Small Shell to decorate them.
+    dialogueText: Drag the Ink onto Custom Small Shells to decorate them.
     isTutorial: 1
     spawnLocs: 
     spawnIDs: 
